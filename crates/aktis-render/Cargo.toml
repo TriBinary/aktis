@@ -1,0 +1,21 @@
+[package]
+name = "aktis-render"
+description = "Shared GPU layer: wgpu context, render engine trait, world upload, image output"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+aktis-scene.workspace = true
+aktis-world.workspace = true
+wgpu.workspace = true
+bytemuck.workspace = true
+thiserror.workspace = true
+log.workspace = true

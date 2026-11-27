@@ -1,0 +1,11 @@
+/target
+**/*.rs.bk
+.DS_Store
+.idea/
+*.iml
+.vscode/
+# Never commit Mojang assets, test worlds or render output
+/assets-cache/
+/test-worlds/
+/renders/
+*.mca

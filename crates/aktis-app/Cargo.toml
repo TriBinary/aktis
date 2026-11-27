@@ -1,0 +1,33 @@
+[package]
+name = "aktis-app"
+description = "Aktis desktop application"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+aktis-assets.workspace = true
+aktis-world.workspace = true
+aktis-scene.workspace = true
+aktis-render.workspace = true
+aktis-pt.workspace = true
+aktis-sp.workspace = true
+eframe.workspace = true
+egui.workspace = true
+anyhow.workspace = true
+log.workspace = true
+env_logger.workspace = true
+
+[target.'cfg(target_os = "linux")'.dependencies]
+eframe = { workspace = true, features = ["x11", "wayland"] }
+
+[[bin]]
+name = "aktis"
+path = "src/main.rs"

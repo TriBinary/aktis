@@ -1,0 +1,78 @@
+[workspace]
+resolver = "3"
+members = ["crates/*"]
+default-members = ["crates/aktis-app"]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.95"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/TriBinary/aktis"
+homepage = "https://github.com/TriBinary/aktis"
+authors = ["Trilleo"]
+publish = false
+
+[workspace.dependencies]
+# --- internal crates ---
+aktis-assets = { path = "crates/aktis-assets" }
+aktis-world = { path = "crates/aktis-world" }
+aktis-scene = { path = "crates/aktis-scene" }
+aktis-render = { path = "crates/aktis-render" }
+aktis-pt = { path = "crates/aktis-pt" }
+aktis-sp = { path = "crates/aktis-sp" }
+
+# --- GPU & UI ---
+# wgpu must stay on the same major version that eframe uses (egui-wgpu shares the device).
+wgpu = "30"
+eframe = { version = "0.37", default-features = false, features = ["wgpu", "default_fonts", "persistence"] }
+egui = "0.37"
+naga = "30"
+bytemuck = { version = "1", features = ["derive"] }
+pollster = "1"
+
+# --- math & data ---
+glam = { version = "0.34", features = ["serde", "bytemuck"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+toml = "1"
+
+# --- Minecraft formats ---
+zip = { version = "9", default-features = false, features = ["deflate"] }
+image = { version = "0.25", default-features = false, features = ["png"] }
+fastanvil = "0.32"
+fastnbt = "2"
+
+# --- utilities ---
+thiserror = "2"
+anyhow = "1"
+log = "0.4"
+env_logger = "0.11"
+rayon = "1"
+directories = "6"
+rfd = "0.18"
+
+# --- planned (declared here, not yet used by any crate) ---
+# shaderc: GLSL -> SPIR-V for shader packs (aktis-sp). Builds glslang from source; needs CMake + C++ toolchain.
+shaderc = "0.10"
+# oidn: Intel Open Image Denoise (aktis-pt). Needs the OIDN runtime library; see docs/dev/getting-started.md.
+oidn = "2"
+
+[workspace.lints.rust]
+unsafe_code = "warn"
+missing_docs = "warn"
+
+[workspace.lints.clippy]
+all = { level = "warn", priority = -1 }
+
+[profile.dev]
+# Keep GPU-adjacent code usable in debug builds.
+opt-level = 1
+
+[profile.dev.package."*"]
+opt-level = 3
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+strip = true

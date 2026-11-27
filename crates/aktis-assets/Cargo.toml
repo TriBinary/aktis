@@ -1,0 +1,21 @@
+[package]
+name = "aktis-assets"
+description = "Minecraft asset loading: client jar, resource packs, blockstates, models, PBR textures"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+zip.workspace = true
+image.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+thiserror.workspace = true
+log.workspace = true

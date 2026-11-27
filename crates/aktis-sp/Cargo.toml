@@ -1,0 +1,22 @@
+[package]
+name = "aktis-sp"
+description = "Aktis shader-pack engine: OptiFine/Iris-compatible rasterization pipeline"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+authors.workspace = true
+publish.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+aktis-render.workspace = true
+aktis-scene.workspace = true
+aktis-world.workspace = true
+aktis-assets.workspace = true
+wgpu.workspace = true
+thiserror.workspace = true
+log.workspace = true
