@@ -116,7 +116,7 @@ jobs:
           mkdir release
           find artifacts -type f \( -name '*.tar.gz' -o -name '*.zip' \) -exec cp {} release/ \;
           cd release && sha256sum * > SHA256SUMS.txt && cat SHA256SUMS.txt
-      - uses: softprops/action-gh-release@v2
+      - uses: softprops/action-gh-release@v3
         with:
           name: Aktis v${{ needs.prepare.outputs.version }}
           body_path: artifacts/notes/notes.md
